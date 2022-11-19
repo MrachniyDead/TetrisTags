@@ -9,35 +9,61 @@ const startEl = document.querySelector('.start');
 const startBtn = document.querySelector('.start button');
 const cont = document.querySelector('.container');
 
-document.addEventListener("DOMContentLoaded", () => {
-    if (document.documentElement.clientWidth < 500) {
-        cont.style.marginLeft = `${(document.documentElement.clientWidth - 330) / 2}px`;
-        console.log(cont);
-    }
-});
+let createPlayField;
+if (document.documentElement.clientWidth < 500) {
+    cont.style.marginLeft = `${(document.documentElement.clientWidth - 330) / 2}px`;
+    console.log(cont);
+}
+if (document.documentElement.clientWidth < 380) {
+    createPlayField = function() {
+        return [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        ];
+    };
+} else {
+    createPlayField = function() {
+        return [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        ];
+    };
+}
 
-let playField = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-];
+let playField = createPlayField();
 
 // let playField = Array(20).fill(Array(10).fill(0));
 
@@ -309,6 +335,8 @@ document.onkeydown = function(e) {
     draw();
 };
 
+
+
 // mobile events
 let startPoint={};
 let nowPoint;
@@ -320,45 +348,79 @@ document.addEventListener('touchstart', function(event) {
     ldelay = new Date();
 }, false);
 document.addEventListener('touchend', function(event) {
-    var pdelay=new Date();
+    let pdelay=new Date();
     nowPoint=event.changedTouches[0];
-    var xAbs = Math.abs(startPoint.x - nowPoint.pageX);
-    var yAbs = Math.abs(startPoint.y - nowPoint.pageY);
-    if ((xAbs > 20 || yAbs > 20) && (pdelay.getTime() - ldelay.getTime()) < 200) {
+    let xAbs = Math.abs(startPoint.x - nowPoint.pageX);
+    let yAbs = Math.abs(startPoint.y - nowPoint.pageY);
+    if ((xAbs > 20 || yAbs > 10) && (pdelay.getTime() - ldelay.getTime()) < 200) {
         if (xAbs > yAbs) {
-            if (nowPoint.pageX < startPoint.x){
-                if (!gamePause && !isGameOver) {
-                    activeTetro.x -= 1;
-                    if (hasCollisions()) {
-                        activeTetro.x += 1;
-                    }
-                }
-            }
-            else {
-                if (!gamePause && !isGameOver) {
-                    activeTetro.x += 1;
-                    if (hasCollisions()) {
-                        activeTetro.x -= 1;
-                    }
-                }
-            }
+            if (nowPoint.pageX < startPoint.x){}
+            else {}
         }
         else {
-            if (nowPoint.pageY < startPoint.y){
-                if (!gamePause && !isGameOver) {
-                    rotateTetro();
-                }
-            }
+            if (nowPoint.pageY < startPoint.y){}
             else{
                 if (!gamePause && !isGameOver) {
                     moveTetroFast();
+                    addActiveTetro();
+                    draw();
                 }
             }
         }
+    } else if (!gamePause && !isGameOver &&
+        event.changedTouches[0].pageX > document.documentElement.clientWidth * 1/4 && 
+        event.changedTouches[0].pageX < document.documentElement.clientWidth * 3/4) {
+            rotateTetro();
+            addActiveTetro();
+            draw();
+        }
+}, false);
+
+// Centrer Tap
+// document.addEventListener('touchstart', (e) => {
+//     e.stopPropagation();
+//     if (!gamePause && !isGameOver &&
+//         e.changedTouches[0].pageX > document.documentElement.clientWidth * 1/4 && 
+//         e.changedTouches[0].pageX < document.documentElement.clientWidth * 3/4) {
+//             rotateTetro();
+//             addActiveTetro();
+//             draw();
+//     }
+// }, false);
+
+// Left/Right Tap
+document.addEventListener('touchstart', (e) => {
+    e.stopPropagation();
+    if (e.pageX <= document.documentElement.clientWidth * 1/4) {
+        if (!gamePause && !isGameOver) {
+            activeTetro.x -= 1;
+            if (hasCollisions()) {
+                activeTetro.x += 1;
+            }
+            console.log("Left");
+        }
+        addActiveTetro();
+        draw();
+    } else if (e.pageX >= document.documentElement.clientWidth* 3/4 ) { 
+        if (!gamePause && !isGameOver) {
+            activeTetro.x += 1;
+            if (hasCollisions()) {
+                activeTetro.x -= 1;
+            }
+            console.log('right');
+        }  
         addActiveTetro();
         draw();
     }
 }, false);
+
+if (document.documentElement.clientWidth < 500) {
+    cont.style.marginLeft = `${(document.documentElement.clientWidth - 330) / 2}px`;
+    console.log(cont);
+}
+
+
+
 
 let gamePause = false;
 btn.addEventListener('click', () => {
@@ -375,28 +437,7 @@ btn.addEventListener('click', () => {
 });
 
 function reset() {
-    playField = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    ];
+    playField = createPlayField();
     gameOverEl.style.display = 'none';
     score = 0;
     currentLevel = 1;
