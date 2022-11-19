@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    background-color: #000;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+.menu {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#next-tetro {
+    width: 300px;
+    position: absolute;
+    left: 350px;
+    top: 200px;
+    font-size: 0;
+}
+
+button {
+    width: 100px;
+    height: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+.main {
+    width: 320px;
+    height: 620px;
+    margin: 20px auto 0;
+    border: 10px solid silver;
+    font-size: 0; 
+    /* убираем встрочное форматирование */
+}
+
+.game-over, .start {
+    display: none;
+    position: absolute;
+    top: 60px;
+    width: 320px;
+    height: 620px;
+    font-size: 27px;
+    color: red;
+    padding-top: 200px;
+    text-align: center;
+    background-color: rgba(60, 60, 60, .96);
+    z-index: 2;
+}
+
+.start {
+    display: block;
+    padding-top: 250px;
+}
+
+.game-over button, .start button{
+    background-color: red;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    border: none;
+    color: white;
+}
+.game-over button:hover, .start button:hover {
+    box-shadow: 10px 10px 2px 1px rgba(0, 0, 255, .2);
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    border: 1px solid silver;
+    display: inline-block;
+}
+
+.unvisCell {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+}
+
+.movingCell {
+    background-color: blue;
+}
+
+.fixedCell {
+    background-color: green;
+}
+
+@media (max-width: 500px) {
+	body {
+		position: fixed;
+	}
+    #next-tetro {
+        display: none;
+    }
+}
