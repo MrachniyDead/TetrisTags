@@ -359,6 +359,8 @@ function preventZoom(e) {
     e.target.click();
 }
 
+document.addEventListener('touchstart', preventZoom); 
+
 // mobile events
 let startPoint={};
 let nowPoint;
