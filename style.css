@@ -2,7 +2,14 @@
     box-sizing: border-box;
 }
 
+body{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    overflow: hidden;
+}
 body {
+    position: fixed;
     overflow: hidden;
     background-color: #000;
     color: white;
@@ -17,7 +24,7 @@ body {
 .container {
     position: relative;
     width: 300px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     margin-top: 20px;
     font-size: 25px;
 }
@@ -30,11 +37,24 @@ body {
 }
 
 #next-tetro {
-    width: 300px;
+    width: 180px;
     position: absolute;
-    left: 350px;
+    left: 320px;
     top: 200px;
     font-size: 0;
+}
+.down {
+    width: 100px;
+    height: 50px;
+    background-color: white;
+    border-radius: 5%;
+    position: absolute;
+    left: 330px;
+    top: 550px;
+    font-size: 25px;
+    padding-top: 10px;
+    color: black;
+    text-align: center;
 }
 
 button {
@@ -45,10 +65,10 @@ button {
 }
 
 .main {
-    width: 320px;
-    height: 620px;
+    width: 310px;
+    height: 610px;
     margin: 20px auto 0;
-    border: 10px solid silver;
+    border: 5px solid silver;
     font-size: 0; 
     /* убираем встрочное форматирование */
 }
@@ -57,7 +77,7 @@ button {
     display: none;
     position: absolute;
     top: 60px;
-    width: 320px;
+    width: 310px;
     height: 620px;
     font-size: 27px;
     color: red;
@@ -92,9 +112,12 @@ button {
 }
 
 .unvisCell {
-    width: 30px;
-    height: 30px;
     display: inline-block;
+}
+
+.small {
+    width: 15px;
+    height: 15px;
 }
 
 .movingCell {
@@ -105,43 +128,46 @@ button {
     background-color: green;
 }
 
+.over-score {
+    display: block;
+    color: white;
+    margin: 10px;
+}
+.over-best-score {
+    display: block;
+    color: white;
+    margin-bottom: 20px;
+}
+
 @media (max-width: 500px) {
 	body {
 		position: fixed;
 	}
-    #next-tetro {
-        display: none;
-    }
 }
 
-@media (max-width: 380px) {
-    .cell {
-        border: 1px solid silver;
-        display: inline-block;
-    }
+@media (max-width: 470px) {
 	.main {
-        height: 530px;  
         margin-top: 2px;  
     }
     .start {
-        top: 22px;
-        height: 531px;  
-        padding-top: 180px;
+        top: 34px;
+        height: 610px;  
+        padding-top: 264px;
     }
     .game-over {
-        top: 22px;
-        height: 531px;  
+        top: 34px;
+        height: 610px;  
         padding-top: 108px;
     }
     .container {
         margin-top: 0;
-        font-size: 13px;
+        font-size: 19px;
     }
     .menu {
         margin-top: 0;
     }
     button {
-        height: 20px;
-        font-size: 13px;
+        height: 32px;
+        font-size: 19px;
     }
 }

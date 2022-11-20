@@ -8,15 +8,20 @@ const restartBtn = gameOverEl.querySelector('button');
 const startEl = document.querySelector('.start');
 const startBtn = document.querySelector('.start button');
 const cont = document.querySelector('.container');
+const down = document.querySelector('.down');
+const overScoreEl = document.querySelector('.over-score');
+const overBestScoreEl = document.querySelector('.over-best-score');
+
 
 let createPlayField;
-if (document.documentElement.clientWidth < 500) {
-    cont.style.marginLeft = `${(document.documentElement.clientWidth - 330) / 2}px`;
-    console.log(cont);
-}
+// if (document.documentElement.clientWidth < 500) {
+//     cont.style.marginLeft = `${(document.documentElement.clientWidth - 330) / 2}px`;
+//     console.log(cont);
+// }
 if (document.documentElement.clientWidth < 380) {
     createPlayField = function() {
         return [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -66,8 +71,8 @@ if (document.documentElement.clientWidth < 380) {
 let playField = createPlayField();
 
 // let playField = Array(20).fill(Array(10).fill(0));
-
 let score = 0;
+let highScore = localStorage.getItem('highScore') || 0;
 let currentLevel = 1;
 
 let possibleLevels = {
@@ -188,9 +193,9 @@ function drawNextElement() {
     for (let y = 0; y < nextTetro.shape.length; y++) {
         for (let x = 0; x < nextTetro.shape[y].length; x++) {
             if (nextTetro.shape[y][x] === 1) {
-                nextElInnerHTML += '<div class="cell movingCell"></div>';
+                nextElInnerHTML += '<div class="cell movingCell small"></div>';
             } else {
-                nextElInnerHTML += '<div class="unvisCell"></div>';
+                nextElInnerHTML += '<div class="unvisCell small"></div>';
             }
         }
         nextElInnerHTML +='<br></br>';
@@ -221,6 +226,12 @@ let isGameOver = false;
 function gameOver() {
     console.log('game');
     gameOverEl.style.display = 'block';
+    if (score > highScore) {
+        highScore = score;
+        localStorage.setItem('highScore', highScore);
+    }
+    overScoreEl.textContent = `You Score - ${score}`;
+    overBestScoreEl.textContent = `Best Score - ${highScore}`;
     isGameOver = !isGameOver;
 }
 
@@ -335,6 +346,14 @@ document.onkeydown = function(e) {
     draw();
 };
 
+var lastTouchEnd = 0;
+document.addEventListener('touchend', function (event) {
+    var now = (new Date()).getTime();
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+    }
+    lastTouchEnd = now;
+}, false);
 
 
 // mobile events
@@ -367,26 +386,19 @@ document.addEventListener('touchend', function(event) {
                 }
             }
         }
-    } else if (!gamePause && !isGameOver &&
-        event.changedTouches[0].pageX > document.documentElement.clientWidth * 1/4 && 
-        event.changedTouches[0].pageX < document.documentElement.clientWidth * 3/4) {
-            rotateTetro();
-            addActiveTetro();
-            draw();
+    } else {
+        if (!gamePause && !isGameOver &&
+            event.changedTouches[0].pageX > document.documentElement.clientWidth * 1/4 && 
+            event.changedTouches[0].pageX < document.documentElement.clientWidth * 3/4) {
+                rotateTetro();
+                addActiveTetro();
+                draw();
         }
+    }
 }, false);
 
-// Centrer Tap
-// document.addEventListener('touchstart', (e) => {
-//     e.stopPropagation();
-//     if (!gamePause && !isGameOver &&
-//         e.changedTouches[0].pageX > document.documentElement.clientWidth * 1/4 && 
-//         e.changedTouches[0].pageX < document.documentElement.clientWidth * 3/4) {
-//             rotateTetro();
-//             addActiveTetro();
-//             draw();
-//     }
-// }, false);
+
+
 
 // Left/Right Tap
 document.addEventListener('touchstart', (e) => {
@@ -414,10 +426,6 @@ document.addEventListener('touchstart', (e) => {
     }
 }, false);
 
-if (document.documentElement.clientWidth < 500) {
-    cont.style.marginLeft = `${(document.documentElement.clientWidth - 330) / 2}px`;
-    console.log(cont);
-}
 
 
 
