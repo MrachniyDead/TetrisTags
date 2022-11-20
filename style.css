@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-*{touch-action: none;} /*only allow scroll gestures*/
+.container{touch-action: manipulation;} /*only allow scroll gestures*/
 
 body{
     height: 100%;
