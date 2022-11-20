@@ -14,14 +14,13 @@ const overBestScoreEl = document.querySelector('.over-best-score');
 
 
 let createPlayField;
-// if (document.documentElement.clientWidth < 500) {
+// if (document.documentElement.clientWidth < 400) {
 //     cont.style.marginLeft = `${(document.documentElement.clientWidth - 330) / 2}px`;
 //     console.log(cont);
 // }
 if (document.documentElement.clientWidth < 380) {
     createPlayField = function() {
         return [
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
