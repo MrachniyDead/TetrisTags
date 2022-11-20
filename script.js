@@ -373,6 +373,10 @@ document.addEventListener("touchend", function(event){
   }
 });
 
+document.addEventListener('touchmove', function(event){
+    if (event.scale !== 1) {event.preventDefault();} //if a scale gesture, don't
+});
+
 
 // mobile events
 let startPoint={};

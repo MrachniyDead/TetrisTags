@@ -2,6 +2,8 @@
     box-sizing: border-box;
 }
 
+*{touch-action: pan-x pan-y} /*only allow scroll gestures*/
+
 body{
     height: 100%;
     width: 100%;
